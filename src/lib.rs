@@ -1,3 +1,4 @@
+pub mod error;
 mod frame;
 mod query;
 mod transport;

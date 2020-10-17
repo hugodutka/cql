@@ -1,6 +1,6 @@
+use crate::error::{Error, Result};
 use crate::frame::{Frame, Startup};
 use crate::query::Query;
-use anyhow::{Context, Result};
 use tokio::net::{TcpStream, ToSocketAddrs};
 use tokio::prelude::*;
 
@@ -13,25 +13,28 @@ impl Connection {
     pub async fn new(addr: impl ToSocketAddrs) -> Result<Connection> {
         let stream = TcpStream::connect(addr)
             .await
-            .context("failed to connect to the database")?;
+            .map_err(|err| Error::DatabaseConnectionFailed(err))?;
 
         let mut conn = Connection { stream };
 
-        conn.send_frame(Frame::from(Startup {}))
-            .await
-            .context("failed to send a startup frame")?;
+        conn.send_frame(Frame::from(Startup {})).await?;
 
         Ok(conn)
     }
 
     pub async fn query(&mut self, query: Query) -> Result<()> {
-        self.send_frame(Frame::from(query)).await?;
+        self.send_frame(Frame::from(query))
+            .await
+            .map_err(|err| Error::QueryNotSent(Box::new(err)))?;
 
         Ok(())
     }
 
     async fn send_frame(&mut self, frame: Frame) -> Result<()> {
-        self.stream.write_all(frame.as_bytes().as_slice()).await?;
+        self.stream
+            .write_all(frame.as_bytes().as_slice())
+            .await
+            .map_err(|err| Error::FrameNotSent(err))?;
 
         Ok(())
     }
