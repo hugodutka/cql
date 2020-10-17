@@ -1,4 +1,6 @@
 mod frame;
+mod query;
+mod types;
 
 #[cfg(test)]
 mod tests {
