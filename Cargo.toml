@@ -9,4 +9,4 @@ edition = "2018"
 [dependencies]
 anyhow = "1.0.33"
 lazy_static = "1.4.0"
-tokio = { version = "0.3", features = ["net", "io-util"] }
+tokio = { version = "0.3", features = ["net", "io-util", "rt", "macros"] }
