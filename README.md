@@ -8,7 +8,13 @@ This is a very limited async Rust driver for CQL databases. It enables you to do
 It won't help you with getting the results of your query or even checking if it executed
 successfully.
 
-# Examples:
+You may use this crate in your project by adding this dependency to your `Cargo.toml`:
+
+```
+cql = { git = "https://github.com/hugodutka/cql" }
+```
+
+## Examples:
 
 ```rust
 use cql::{Connection, Query};
@@ -21,7 +27,7 @@ async fn main() {
 }
 ```
 
-# Testing
+## Testing
 
 Tests expect a CQL compatible database to be available at `localhost:9042`. You will find a
 `docker-compose.yaml` file in the `tests` folder that can provision one for you. Just run:
