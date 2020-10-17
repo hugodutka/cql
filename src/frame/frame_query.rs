@@ -12,6 +12,7 @@ impl From<Query> for Frame {
             }
             .as_bytes(),
         );
+        // hardcoded for now
         body.extend_from_slice(&[
             0, 0, // consistency
             0, // flags
