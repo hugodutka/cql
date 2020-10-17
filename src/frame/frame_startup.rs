@@ -1,10 +1,10 @@
 use super::{Frame, Opcode, Version};
 
 /// Represents a startup frame. Can be converted to an actual Frame using `Frame::from`.
-/// # Examples
 ///
+/// # Examples
 /// ```ignore
-/// let frame = Frame::from(Startup {})
+/// Frame::from(Startup {});
 /// ```
 pub struct Startup;
 
