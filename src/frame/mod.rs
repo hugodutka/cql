@@ -58,14 +58,12 @@ impl Frame {
 
 pub enum Version {
     Request,
-    Response,
 }
 
 impl Version {
     pub fn as_byte(&self) -> u8 {
         match self {
             Version::Request => 0x04,
-            Version::Response => 0x84,
         }
     }
 }

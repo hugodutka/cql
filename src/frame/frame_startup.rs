@@ -1,5 +1,11 @@
 use super::{Frame, Opcode, Version};
 
+/// Represents a startup frame. Can be converted to an actual Frame using `Frame::from`.
+/// # Examples
+///
+/// ```no_run
+/// let frame = Frame::from(Startup {})
+/// ```
 pub struct Startup;
 
 impl From<Startup> for Frame {
