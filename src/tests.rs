@@ -26,8 +26,8 @@ async fn can_send_query() {
 #[tokio::test]
 async fn can_send_many_queries() {
     let mut conn = Connection::new(DATABASE_URL).await.unwrap();
-    for _ in 0..100 {
-        let query = Query::new("INSERT INTO ks.t(a,b,c) VALUES (1,2,'abc')");
+    for i in 0..100u32 {
+        let query = Query::new(format!("INSERT INTO ks.t(a,b,c) VALUES ({},2,'abc')", i).as_str());
         conn.query(query).await.unwrap();
     }
 }
