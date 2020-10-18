@@ -1,5 +1,5 @@
 /// Note: these tests expect a CQL compatible database to be available on `localhost:9042`. They
-/// Also expect that one will not be present at `localhost:14141`.
+/// also expect that one will not be present at `localhost:14141`.
 use crate::*;
 
 const DATABASE_URL: &str = "localhost:9042";
