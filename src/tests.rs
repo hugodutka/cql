@@ -14,3 +14,12 @@ async fn can_send_query() {
     let query = Query::new("INSERT INTO ks.t(a,b,c) VALUES (1,2,'abc')");
     conn.query(query).await.unwrap();
 }
+
+#[tokio::test]
+async fn can_send_many_queries() {
+    let mut conn = Connection::new(DATABASE_URL).await.unwrap();
+    for _ in 0..100 {
+        let query = Query::new("INSERT INTO ks.t(a,b,c) VALUES (1,2,'abc')");
+        conn.query(query).await.unwrap();
+    }
+}
