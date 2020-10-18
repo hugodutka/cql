@@ -30,7 +30,7 @@ async fn main() {
 ## Testing
 
 Tests expect a CQL compatible database to be available at `localhost:9042`. You will find a
-`docker-compose.yaml` file in the `tests` folder that can provision one for you. Just run:
+`docker-compose.yaml` file in the `test_util` folder that can provision one for you. Just run:
 
 ```bash
 cd tests
